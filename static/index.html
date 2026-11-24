@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1b1a">
+  <meta name="description" content="Ekologický detektív – interaktívna triedna hra o energii v ekosystéme.">
+  <title>Ekologický detektív · Kvíz</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-head">
+      <a href="/" class="brand" aria-label="Ekologický detektív – domov">
+        <span class="brand-mark" aria-hidden="true">✳</span>
+        <span><strong>EKO</strong><small>DETEKTÍV</small></span>
+      </a>
+      <div class="header-right">
+        <span class="header-note"><span class="dot"></span> ENERGIA V EKOSYSTÉME</span>
+        <button id="go-home" class="nav-link" type="button">Domov</button>
+      </div>
+    </header>
+
+    <main class="main">
+      <section id="home" class="view">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <p class="eyebrow"><span class="star">✦</span> INTERAKTÍVNA EKOLOGICKÁ HRA</p>
+            <h1>Kam sa<br>stráca <em>energia?</em></h1>
+            <p class="hero-copy">6 otázok. Jeden potravový reťazec. A všetky odpovede na dosah ruky. Otestuj, či by si dokázal zachrániť ekosystém.</p>
+            <div class="hero-actions">
+              <button class="btn btn-primary" id="player-choice" type="button">Som hráč <span aria-hidden="true">↗</span></button>
+              <button class="btn btn-outline" id="admin-choice" type="button">Autorský panel <span aria-hidden="true">↗</span></button>
+            </div>
+            <div class="hero-stats"><span><strong>06</strong> otázok</span><i></i><span><strong>600</strong> bodov</span><i></i><span><strong>05</strong> minút</span></div>
+          </div>
+          <div class="hero-art" aria-label="Ilustrácia toku energie">
+            <div class="art-glow"></div>
+            <div class="sun-graphic">☀</div>
+            <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+            <div class="energy-card e-card-one"><span>01</span><b>🌱</b><small>PRODUCENT</small></div>
+            <div class="energy-card e-card-two"><span>02</span><b>🐇</b><small>KONZUMENT</small></div>
+            <div class="energy-card e-card-three"><span>03</span><b>🦊</b><small>PREDÁTOR</small></div>
+            <div class="motion-path"></div>
+            <div class="art-caption">ENERGIA PRETEKÁ JEDNÝM SMEROM <span>↗</span></div>
+          </div>
+        </div>
+        <div class="value-strip">
+          <span>☘️ Potravové reťazce</span><span>〰 Prenos energie</span><span>◈ Ekologické pyramídy</span><span>♨️ Tepelné straty</span>
+        </div>
+      </section>
+
+      <section id="join" class="view hidden">
+        <div class="narrow-card">
+          <button class="back-link" data-nav="home" type="button">← Späť</button>
+          <p class="eyebrow">PRIDAJ SA DO HRY</p>
+          <h2>Vstúp do <em>ekosystému.</em></h2>
+          <p class="subtext">Zadaj kód od autora a prezývku, pod ktorou sa zobrazíš v rebríčku.</p>
+          <form id="join-form" class="form-stack">
+            <label>Kód miestnosti <input id="join-code" type="text" maxlength="5" placeholder="napr. EKO42" autocomplete="off" autocapitalize="characters" required></label>
+            <label>Prezývka <input id="join-nick" type="text" maxlength="24" placeholder="napr. ZelenýDrak" autocomplete="off" required></label>
+            <label>Tím <select id="join-team"><option>Jednotlivec</option><option>Tím A</option><option>Tím B</option><option>Tím C</option><option>Tím D</option><option>Tím E</option></select></label>
+            <button class="btn btn-primary btn-wide" type="submit">Pripojiť sa k hre <span>→</span></button>
+            <p class="form-hint">Použi prezývku, nie celé meno. Odpovede vidí organizátor a ukladajú sa na serveri.</p>
+          </form>
+        </div>
+      </section>
+
+      <section id="play" class="view hidden">
+        <div class="game-wrap">
+          <div class="game-top"><div><p class="eyebrow">TVOJA MISIA</p><h2>Energetická <em>výzva</em></h2></div><div class="player-chip" id="player-name">Hráč</div></div>
+          <div class="game-progress-line"><span id="progress-label">OTÁZKA 1 / 6</span><span id="player-points">0 / 600 BODOV</span></div>
+          <div class="progress-track"><div id="progress-fill" class="progress-fill"></div></div>
+          <div id="quiz-area" class="question-card"></div>
+          <div class="game-bottom"><span>✦ Ekologický detektív</span><span>Premýšľaj skôr, než odpovieš.</span></div>
+        </div>
+      </section>
+
+      <section id="admin-login" class="view hidden">
+        <div class="narrow-card admin-login-card">
+          <button class="back-link" data-nav="home" type="button">← Späť</button>
+          <p class="eyebrow">SÚKROMNÝ PRÍSTUP</p>
+          <h2>Tvoj <em>autorský panel.</em></h2>
+          <p class="subtext">Sem majú prístup iba organizátori. PIN získaš z nastavení hostingu (v lokálnej verzii z okna programu).</p>
+          <form id="admin-login-form" class="form-stack">
+            <label>Autorský PIN <input id="admin-pin" type="password" inputmode="numeric" pattern="[0-9]*" placeholder="8 až 12 číslic" autocomplete="off" required></label>
+            <button class="btn btn-primary btn-wide" type="submit">Otvoriť štatistiky <span>↗</span></button>
+          </form>
+        </div>
+      </section>
+
+      <section id="admin" class="view hidden">
+        <div class="admin-wrap">
+          <div class="admin-heading">
+            <div><p class="eyebrow">LIVE KONTROLNÉ CENTRUM</p><h2>Autorský <em>panel.</em></h2><p class="subtext">Odpovede a poradie sa aktualizujú automaticky.</p></div>
+            <div class="admin-badge"><span class="live-indicator"></span> ŽIVÉ ŠTATISTIKY</div>
+          </div>
+          <div class="room-bar">
+            <div class="room-meta"><span>KÓD MIESTNOSTI</span><strong id="room-code">·····</strong><small id="room-state">Čaká na spustenie</small></div>
+            <div class="room-actions">
+              <button id="copy-link" class="btn btn-mini btn-outline" type="button">Kopírovať link</button>
+              <button id="start-btn" class="btn btn-mini btn-primary" type="button">Spustiť kvíz</button>
+              <button id="pause-btn" class="btn btn-mini btn-outline" type="button">Pozastaviť</button>
+              <button id="end-btn" class="btn btn-mini btn-outline" type="button">Ukončiť</button>
+              <button id="reset-btn" class="btn btn-mini btn-danger" type="button">Nová hra</button>
+            </div>
+          </div>
+          <div class="stats-grid">
+            <div class="stat"><span>PRIHLÁSENÍ HRÁČI</span><strong id="stat-players">0</strong><small>v tejto miestnosti</small></div>
+            <div class="stat"><span>ODOVZDANÉ ODPOVEDE</span><strong id="stat-answers">0</strong><small>zo všetkých otázok</small></div>
+            <div class="stat"><span>ÚSPEŠNOSŤ</span><strong id="stat-accuracy">0 %</strong><small>správne odpovede</small></div>
+            <div class="stat"><span>DOKONČILI</span><strong id="stat-completed">0</strong><small>zo 6 otázok</small></div>
+          </div>
+          <div class="dashboard-grid">
+            <div class="panel ranking-panel"><div class="panel-head"><div><p class="eyebrow">PORADIE</p><h3>Rebríček hráčov</h3></div><span class="pill">100 b / otázka</span></div><div id="leaderboard" class="table-shell"></div></div>
+            <div class="panel question-panel"><div class="panel-head"><div><p class="eyebrow">ODPOVEDE</p><h3>Úspešnosť otázok</h3></div></div><div id="question-overview" class="overview-list"></div></div>
+          </div>
+          <div class="panel detail-panel"><div class="panel-head details-head"><div><p class="eyebrow">ANALÝZA ODPOVEDÍ</p><h3>Kto odpovedal ako?</h3></div><select id="question-filter" aria-label="Vyber otázku" class="filter-select"></select></div><div id="question-detail"></div></div>
+          <div class="panel details-table-panel"><div class="panel-head"><div><p class="eyebrow">PODROBNÉ VÝSLEDKY</p><h3>Odpovede jednotlivcov</h3></div><button id="export-csv" class="btn btn-mini btn-outline" type="button">↓ Export CSV</button></div><div id="answer-matrix" class="table-shell"></div></div>
+          <div class="panel team-panel"><div class="panel-head"><div><p class="eyebrow">SKUPINY</p><h3>Poradie tímov</h3></div><span class="pill">priemer bodov</span></div><div id="team-list" class="team-list"></div></div>
+          <p class="privacy-note">Výsledky sú v databáze servera. Na bezplatnom hostingu sa pri reštarte môžu vymazať. Pred novou hrou exportuj CSV.</p>
+        </div>
+      </section>
+    </main>
+    <footer class="footer"><span>© EKO DETEKTÍV · ŠKOLSKÁ AKTIVITA</span><span>ENERGIA NEKOLUJE. PRETEKÁ. ↗</span></footer>
+  </div>
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+</body>
+</html>
