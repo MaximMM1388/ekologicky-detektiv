@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: ekologicky-detektiv
+    runtime: python
+    plan: free
+    buildCommand: python --version
+    startCommand: python server.py
+    healthCheckPath: /api/public
+    envVars:
+      - key: EKO_CLOUD
+        value: "1"
+      - key: EKO_ADMIN_PIN
+        sync: false

@@ -1,0 +1,5 @@
+__pycache__/
+*.py[cod]
+quiz.db
+nastavenia.json
+.env
